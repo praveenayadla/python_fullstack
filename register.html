@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Register </title>
 </head>
 <body>
-     Home<br>
-       <h1>Register for NRIIT Learning Management</h1>
-       <p>Learn Practice Get placed</p>
-       <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="courses.html">Courses</a>
-        <a href="trainers.html">Trainers</a>
-        <a href="register.html">Register</a>
-        <a href="login.html">Login</a>
-        <a href="contact.html">Contact</a>
-       </nav>
-    </header>
+     <header>Register</header>
+     <main>
+        <h2> Student Registration</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text"placeholder="Enter your full name"><br>
+            <label>Email:</label>
+            <input type="email"placeholder="enter your email"><br>
+            <label>Password:</label>
+            <input type="password"placeholder="enter your password"><br>
+            <label>Confirm Password:</label>
+            <input type="password"placeholder="confirm your password"><br>
+            <label>Date of Birth:</label>
+            <input type="date"placeholder="enter your DOB"><br>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other<br>
+            <br>
+            <select>
+                <option value="course1">Python FullStack</option>
+                <option value="course2">Java FullStack</option>
+                <option value="course3">Data Science</option>
+            </select>
+           
+            <input type="submit" value="Register">
+        </form>
+     </main>
+
 </body>
 </html>
