@@ -10,23 +10,26 @@
      <header>Register</header>
      <main>
         <h2> Student Registration</h2>
-        <form>
+        <form id="registerForm" method="POST">
             <label>Full Name:</label>
-            <input type="text"placeholder="Enter your full name"><br>
+            <input type="text"placeholder="Enter your full name"id="name" name="name"><br>
             <label>Email:</label>
-            <input type="email"placeholder="enter your email"><br>
+            <input type="email"placeholder="enter your email" id="email" name="email"><br>
             <label>Password:</label>
-            <input type="password"placeholder="enter your password"><br>
+            <input type="password"placeholder="enter your password" id="password" name="password"><br>
             <label>Confirm Password:</label>
-            <input type="password"placeholder="confirm your password"><br>
+            <input type="password"placeholder="confirm your password" id="confirmPassword" name="confirmPassword"><br>
             <label>Date of Birth:</label>
-            <input type="date"placeholder="enter your DOB"><br>
+            <input type="date"placeholder="enter your DOB" id="dob" name="dob"><br>
             <label>Gender:</label>
-            <input type="radio" name="gender" value="male"> Male
-            <input type="radio" name="gender" value="female"> Female
-            <input type="radio" name="gender" value="other"> Other<br>
+            <input type="radio" name="gender" value="male" id="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" value="other" id="other">
+            <label for="other">Other</label><br>
             <br>
-            <select>
+            <select name="course" id="course">
                 <option value="course1">Python FullStack</option>
                 <option value="course2">Java FullStack</option>
                 <option value="course3">Data Science</option>
