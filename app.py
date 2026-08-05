@@ -18,7 +18,7 @@ def login():
 @app.route("/trainers")
 def trainers():
     return render_template("trainers.html")
-app.route('/register',methods=["POST","GET"])
+@app.route('/register',methods=["POST","GET"])
 def register():
     return render_template("register.html")
     if request.method == "POST":
@@ -29,6 +29,30 @@ def register():
         gender=request.form("gender")
         course=request.form("course")
         return render_template("register.html")
+@app.route('/login',methods=["POST","GET"])
+def login():
+    if request.method=="POST":
+        return render_template("login.html")
+    return render_template("login.html")
+@app.route('/registers',methods=["POST"])
+def api_register():
+    data=request.get_json()
+    email=data.get("email")
+    if email in users_db:
+        return jsonify({"status":"error","message":"User already exists with this email!"}),400
+    users_db[email]=data
+    return jsonify({"status":"success","message":"Registration successful!"})
+@app.route('/login',methods=["POST"])
+def api_login():
+    data=equest.get_json()
+    email=data.get("email")
+    password=data.get("pssword")
+    user=users_db.get(email)
+    if user and user.get("pasword")==password:
+        return jsonify({"sttaus":"success","message":"login successfull! Welcome back."})
+    else:
+        return jsonify({"status":"error","message":"Invalid email or password!"}),401
+
 
 
 
