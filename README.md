@@ -10,3 +10,4 @@
 404 not found
 500 internal server error
 503 service unavailable
+ . env/bin/activate

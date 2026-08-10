@@ -1,62 +1,110 @@
+from flask import Flask, render_template, jsonify, request
 
-from flask import Flask,render_template,jsonify,request
 app = Flask(__name__)
+
+# Temporary database
+users_db = {}
+
+
 @app.route('/')
 def home():
     return render_template("index.html")
-@app.route("/about")
+
+
+@app.route('/about')
 def about():
     return render_template("about.html")
-@app.route("/contact")
+
+
+@app.route('/contact')
 def contact():
     return render_template("contact.html")
-@app.route("/courses")
+
+
+@app.route('/courses')
 def courses():
     return render_template("courses.html")
-def login():
-    return render_template("login.html")
-@app.route("/trainers")
+
+
+@app.route('/trainers')
 def trainers():
     return render_template("trainers.html")
-@app.route('/register',methods=["POST","GET"])
+
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template("register.html")
     if request.method == "POST":
-        name=request.form("name")
-        email=request.form("email")
-        password=request.form("password")
-        dob=request.form("dob")
-        gender=request.form("gender")
-        course=request.form("course")
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        dob = request.form.get("dob")
+        gender = request.form.get("gender")
+        course = request.form.get("course")
+
+        users_db[email] = {
+            "name": name,
+            "email": email,
+            "password": password,
+            "dob": dob,
+            "gender": gender,
+            "course": course
+        }
+
         return render_template("register.html")
-@app.route('/login',methods=["POST","GET"])
+
+    return render_template("register.html")
+
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method=="POST":
+    if request.method == "POST":
         return render_template("login.html")
+
     return render_template("login.html")
-@app.route('/registers',methods=["POST"])
+
+
+@app.route('/registers', methods=['POST'])
 def api_register():
-    data=request.get_json()
-    email=data.get("email")
+    data = request.get_json()
+
+    email = data.get("email")
+
     if email in users_db:
-        return jsonify({"status":"error","message":"User already exists with this email!"}),400
-    users_db[email]=data
-    return jsonify({"status":"success","message":"Registration successful!"})
-@app.route('/login',methods=["POST"])
+        return jsonify({
+            "status": "error",
+            "message": "User already exists with this email!"
+        }), 400
+
+    users_db[email] = data
+
+    return jsonify({
+        "status": "success",
+        "message": "Registration successful!"
+    })
+
+
+@app.route('/api/login', methods=['POST'])
 def api_login():
-    data=equest.get_json()
-    email=data.get("email")
-    password=data.get("pssword")
-    user=users_db.get(email)
-    if user and user.get("pasword")==password:
-        return jsonify({"sttaus":"success","message":"login successfull! Welcome back."})
-    else:
-        return jsonify({"status":"error","message":"Invalid email or password!"}),401
+    data = request.get_json()
 
+    email = data.get("email")
+    password = data.get("password")
 
+    user = users_db.get(email)
 
+    if user and user.get("password") == password:
+        return jsonify({
+            "status": "success",
+            "message": "Login successful! Welcome back."
+        })
 
+    return jsonify({
+        "status": "error",
+        "message": "Invalid email or password!"
+    }), 401
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+   
