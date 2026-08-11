@@ -11,3 +11,4 @@
 500 internal server error
 503 service unavailable
  . env/bin/activate
+ fuser -k 5000/tcp
