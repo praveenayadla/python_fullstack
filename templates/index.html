@@ -13,16 +13,22 @@
     Home <br />
     <h1>NRIIT Learning Management</h1>
     <p>Learn Practice Get Placed</p>
-    <nav>
+    
+  
+  <nav>
       <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="/courses">Courses</a>
       <a href="/trainers">Trainers</a>
+      {% if session.get('user_email') %}
+      <a href="/logout">Logout</a>
+      {% else %}
       <a href="/register">Register</a>
       <a href="/login">Login</a>
+      {% endif %}
       <a href="/contact">Contact</a>
     </nav>
-  </header>
+    </header>
   <main>
     <section>
       <h2>Welcome to NRIIT Learning Management System</h2>
@@ -31,7 +37,7 @@
         track their learning journey.
       </p>
       <p>Learning never stops</p>
-      <img src="{{ url_for('static', filename='image/banner.jpg') }}" alt="LMS Banner" width="800" class="banner">
+      <img src="{{ url_for('static', filename='images/banner.jpg') }}" alt="LMS Banner" width="800" class="banner">
     </section>
     <section>
       <h2>Why choose NRIIT?</h2>

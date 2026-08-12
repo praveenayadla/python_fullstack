@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <title>Courses</title>
 </head>
 <body>
@@ -11,14 +11,18 @@
        <h1> Courses in NRIIT Learning Management</h1>
        <p>Learn Practice Get placed</p>
        <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/courses">Courses</a>
-        <a href="/trainers">Trainers</a>
-        <a href="/registers">Register</a>
-        <a href="/login">Login</a>
-        <a href="/contact">Contact</a>
-       </nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/courses">Courses</a>
+      <a href="/trainers">Trainers</a>
+      {% if session.get('user_email') %}
+      <a href="/logout">Logout</a>
+      {% else %}
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+      {% endif %}
+      <a href="/contact">Contact</a>
+    </nav>
     </header>
     <main>
         <h2>Courses Offered</h2>
