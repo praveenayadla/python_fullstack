@@ -149,7 +149,7 @@ def update_task(task_id):
 @app.route('/api/tasks/<int:task_id>',methods=["DELETE"])
 def delete_task(task_id):
     user_email=session.get("user_email")
-      user_email=session.get("user_email")
+    user_email=session.get("user_email")
     if not user_email:
         return jsonify({"status": "error", "message":"No user logged in!,Login please!"}),401
         conn=get_db_connection()
