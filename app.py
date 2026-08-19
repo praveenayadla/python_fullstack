@@ -40,7 +40,7 @@ def init_db():
     conn.close()
 init_db()
 
-@app.route('/')
+@app.route("/")
 def home():
     return render_template("index.html")
 
